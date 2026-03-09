@@ -19,20 +19,22 @@ const formatDate = (date: Date) => {
 <Layout title="标签 - 我的博客">
   <Header />
   
-  <main class="max-w-4xl mx-auto px-4 py-8">
-    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">标签</h1>
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+    <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-6 sm:mb-8">标签</h1>
     
-    <div class="flex flex-wrap gap-3">
+    <div class="flex flex-wrap gap-3 sm:gap-4">
       {tags.map((tag) => {
         const tagPosts = posts.filter(post => post.data.tags.includes(tag));
         
         return (
           <a 
             href={`/tags/${tag}`}
-            class="flex items-center gap-2 px-3 py-2 bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+            class="flex items-center gap-2 px-4 py-2.5 sm:py-3 bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md hover:scale-105 transition-all duration-200 border border-gray-100 dark:border-gray-700"
           >
-            <span class="text-gray-900 dark:text-white">#{tag}</span>
-            <span class="text-sm text-gray-500 dark:text-gray-400">({tagPosts.length})</span>
+            <span class="text-gray-900 dark:text-white font-medium">#{tag}</span>
+            <span class="text-xs sm:text-sm text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded-full">
+              {tagPosts.length}
+            </span>
           </a>
         );
       })}

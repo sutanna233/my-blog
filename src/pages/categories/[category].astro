@@ -32,40 +32,40 @@ const formatDate = (date: Date) => {
 <Layout title={`${category} - 分类 - 我的博客`}>
   <Header />
   
-  <main class="max-w-4xl mx-auto px-4 py-8">
-    <div class="mb-8">
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+    <div class="mb-6 sm:mb-8">
       <a 
         href="/categories"
-        class="text-blue-600 dark:text-blue-400 hover:underline mb-4 inline-block"
+        class="text-blue-600 dark:text-blue-400 hover:underline mb-3 sm:mb-4 inline-block text-sm sm:text-base"
       >
         ← 所有分类
       </a>
-      <h1 class="text-3xl font-bold text-gray-900 dark:text-white">
+      <h1 class="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">
         分类: {category}
       </h1>
-      <p class="text-gray-600 dark:text-gray-400 mt-2">
+      <p class="text-gray-600 dark:text-gray-400 mt-1 sm:mt-2 text-sm sm:text-base">
         共 {categoryPosts.length} 篇文章
       </p>
     </div>
     
-    <div class="space-y-4">
+    <div class="space-y-4 sm:space-y-5">
       {categoryPosts.map((post) => (
-        <article class="bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-          <a href={`/blog/${post.slug}`} class="block p-6">
-            <div class="flex items-center gap-3 mb-2">
-              <time class="text-sm text-gray-500 dark:text-gray-400">
+        <article class="bg-white dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-md transition-all duration-200 border border-gray-100 dark:border-gray-700">
+          <a href={`/blog/${post.slug}`} class="block p-4 sm:p-6">
+            <div class="flex items-center gap-2 sm:gap-3 mb-2">
+              <time class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
                 {formatDate(post.data.pubDate)}
               </time>
               {post.data.categories.length > 0 && (
-                <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded">
+                <span class="text-xs px-2 py-1 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full font-medium">
                   {post.data.categories[0]}
                 </span>
               )}
             </div>
-            <h2 class="text-xl font-bold text-gray-900 dark:text-white mb-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+            <h2 class="text-lg sm:text-xl font-bold text-gray-900 dark:text-white mb-2 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
               {post.data.title}
             </h2>
-            <p class="text-gray-600 dark:text-gray-400 line-clamp-2">
+            <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400 line-clamp-2">
               {post.data.description}
             </p>
           </a>

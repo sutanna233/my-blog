@@ -10,6 +10,45 @@
   --tw-prose-code: #2563eb;
   --tw-prose-pre-bg: #1f2937;
   --tw-prose-quotes: #6b7280;
+  /* 优化行高和间距 */
+  line-height: 1.8;
+}
+
+.prose p {
+  margin-bottom: 1.5em;
+}
+
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  margin-top: 2em;
+  margin-bottom: 0.75em;
+  line-height: 1.4;
+}
+
+.prose ul, .prose ol {
+  margin-bottom: 1.25em;
+  padding-left: 1.5em;
+}
+
+.prose li {
+  margin-bottom: 0.5em;
+}
+
+.prose code {
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+.prose pre {
+  border-radius: 0.5rem;
+  margin: 1.5em 0;
+}
+
+.prose blockquote {
+  border-left: 4px solid #e5e7eb;
+  padding-left: 1em;
+  font-style: italic;
+  margin: 1.5em 0;
 }
 
 .dark .prose {
@@ -20,4 +59,32 @@
   --tw-prose-code: #60a5fa;
   --tw-prose-pre-bg: #1f2937;
   --tw-prose-quotes: #9ca3af;
+}
+
+.dark .prose blockquote {
+  border-left-color: #4b5563;
+}
+
+/* 平滑滚动 */
+html {
+  scroll-behavior: smooth;
+}
+
+/* 移动端导航优化 */
+@media (max-width: 640px) {
+  .prose {
+    font-size: 1rem;
+  }
+  
+  .prose h1 {
+    font-size: 1.75rem;
+  }
+  
+  .prose h2 {
+    font-size: 1.5rem;
+  }
+  
+  .prose h3 {
+    font-size: 1.25rem;
+  }
 }

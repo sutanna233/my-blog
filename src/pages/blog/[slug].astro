@@ -27,10 +27,10 @@ const formatDate = (date: Date) => {
 <Layout title={`${post.data.title} - 我的博客`} description={post.data.description}>
   <Header />
   
-  <main class="max-w-4xl mx-auto px-4 py-8">
-    <article class="bg-white dark:bg-gray-800 rounded-lg shadow-sm overflow-hidden">
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+    <article class="bg-white dark:bg-gray-800 rounded-xl shadow-sm overflow-hidden border border-gray-100 dark:border-gray-700">
       {post.data.heroImage && (
-        <div class="w-full h-64 md:h-96 overflow-hidden">
+        <div class="w-full h-48 sm:h-64 md:h-80 overflow-hidden">
           <img 
             src={post.data.heroImage} 
             alt={post.data.title}
@@ -39,9 +39,9 @@ const formatDate = (date: Date) => {
         </div>
       )}
       
-      <div class="p-6 md:p-8">
-        <header class="mb-8">
-          <div class="flex flex-wrap items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-4">
+      <div class="p-4 sm:p-6 md:p-8">
+        <header class="mb-6 sm:mb-8">
+          <div class="flex flex-wrap items-center gap-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-3 sm:mb-4">
             <time datetime={post.data.pubDate.toISOString()}>
               {formatDate(post.data.pubDate)}
             </time>
@@ -51,7 +51,7 @@ const formatDate = (date: Date) => {
                 <span>·</span>
                 <a 
                   href={`/categories/${post.data.categories[0]}`}
-                  class="text-blue-600 dark:text-blue-400 hover:underline"
+                  class="text-blue-600 dark:text-blue-400 hover:underline font-medium"
                 >
                   {post.data.categories[0]}
                 </a>
@@ -59,7 +59,7 @@ const formatDate = (date: Date) => {
             )}
           </div>
           
-          <h1 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+          <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3 sm:mb-4 leading-tight">
             {post.data.title}
           </h1>
           
@@ -67,7 +67,7 @@ const formatDate = (date: Date) => {
             {post.data.tags.map((tag) => (
               <a 
                 href={`/tags/${tag}`}
-                class="text-sm px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+                class="text-xs sm:text-sm px-3 py-1 bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors font-medium"
               >
                 #{tag}
               </a>
@@ -75,14 +75,14 @@ const formatDate = (date: Date) => {
           </div>
         </header>
         
-        <div class="prose prose-lg dark:prose-invert max-w-none">
+        <div class="prose prose-lg dark:prose-invert max-w-none prose-sm sm:prose-base">
           <Content />
         </div>
         
-        <footer class="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+        <footer class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
           <a 
             href="/"
-            class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline"
+            class="inline-flex items-center text-blue-600 dark:text-blue-400 hover:underline text-sm sm:text-base"
           >
             ← 返回首页
           </a>
