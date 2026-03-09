@@ -1,0 +1,71 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const categories = [...new Set(posts.flatMap(post => post.data.categories))].sort();
+
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString('zh-CN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+};
+---
+
+<Layout title="分类 - 我的博客">
+  <Header />
+  
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">分类</h1>
+    
+    <div class="grid gap-8">
+      {categories.map((category) => {
+        const categoryPosts = posts
+          .filter(post => post.data.categories.includes(category))
+          .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+        
+        return (
+          <section class="bg-white dark:bg-gray-800 rounded-lg shadow-sm p-6">
+            <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+              <a 
+                href={`/categories/${category}`}
+                class="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
+                {category}
+              </a>
+              <span class="text-lg font-normal text-gray-500 dark:text-gray-400 ml-2">
+                ({categoryPosts.length})
+              </span>
+            </h2>
+            
+            <ul class="space-y-4">
+              {categoryPosts.map((post) => (
+                <li>
+                  <a 
+                    href={`/blog/${post.slug}`}
+                    class="block hover:bg-gray-50 dark:hover:bg-gray-700 rounded p-2 -m-2 transition-colors"
+                  >
+                    <div class="flex items-center gap-3">
+                      <time class="text-sm text-gray-500 dark:text-gray-400 w-24">
+                        {formatDate(post.data.pubDate)}
+                      </time>
+                      <span class="text-gray-900 dark:text-white">
+                        {post.data.title}
+                      </span>
+                    </div>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </section>
+        );
+      })}
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>

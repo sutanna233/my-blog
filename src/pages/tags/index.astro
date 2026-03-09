@@ -1,0 +1,43 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { getCollection } from 'astro:content';
+
+const posts = await getCollection('blog');
+const tags = [...new Set(posts.flatMap(post => post.data.tags))].sort();
+
+const formatDate = (date: Date) => {
+  return date.toLocaleDateString('zh-CN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+};
+---
+
+<Layout title="标签 - 我的博客">
+  <Header />
+  
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold text-gray-900 dark:text-white mb-8">标签</h1>
+    
+    <div class="flex flex-wrap gap-3">
+      {tags.map((tag) => {
+        const tagPosts = posts.filter(post => post.data.tags.includes(tag));
+        
+        return (
+          <a 
+            href={`/tags/${tag}`}
+            class="flex items-center gap-2 px-3 py-2 bg-white dark:bg-gray-800 rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          >
+            <span class="text-gray-900 dark:text-white">#{tag}</span>
+            <span class="text-sm text-gray-500 dark:text-gray-400">({tagPosts.length})</span>
+          </a>
+        );
+      })}
+    </div>
+  </main>
+  
+  <Footer />
+</Layout>

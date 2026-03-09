@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* 自定义样式 */
+.prose {
+  --tw-prose-body: #374151;
+  --tw-prose-headings: #111827;
+  --tw-prose-links: #2563eb;
+  --tw-prose-bold: #111827;
+  --tw-prose-code: #2563eb;
+  --tw-prose-pre-bg: #1f2937;
+  --tw-prose-quotes: #6b7280;
+}
+
+.dark .prose {
+  --tw-prose-body: #d1d5db;
+  --tw-prose-headings: #f9fafb;
+  --tw-prose-links: #60a5fa;
+  --tw-prose-bold: #f9fafb;
+  --tw-prose-code: #60a5fa;
+  --tw-prose-pre-bg: #1f2937;
+  --tw-prose-quotes: #9ca3af;
+}
